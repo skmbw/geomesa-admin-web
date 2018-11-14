@@ -1,0 +1,3 @@
+{
+  "desc": "因为WebStorm没有更新，不认识Angular6的新配置angular.json文件，导致新建菜单中没有 'Angular CLI' 这个菜单，添加这个文件，它就认识了"
+}

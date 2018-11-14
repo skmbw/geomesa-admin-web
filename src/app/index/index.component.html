@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="col-12">
+    <h2 class="text-center mt-xl-4">连接数据库</h2>
+    <form #connForm="ngForm" (ngSubmit)="submit()">
+      <div class="row mt-xl-4">
+        <div class="col-12">
+          <mat-form-field class="col-12">
+            <input matInput placeholder="HBase master（HBase master 地址）" [(ngModel)]="connection.master" name="master" #master="ngModel" type="text" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-xl-4">
+        <div class="col-12">
+          <mat-form-field class="col-12">
+            <input matInput placeholder="HBase zookeeper quorum（HBase zk 集群地址）" [(ngModel)]="connection.quorum" name="quorum" #quorum="ngModel" type="text" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-xl-2">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field class="col-12">
+            <input matInput type="number" [(ngModel)]="connection.port" name="port" #port="ngModel" placeholder="Zookeeper port（zk端口，默认2181）" required>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+          <mat-form-field class="col-12">
+            <input matInput type="text" [(ngModel)]="connection.catalog" name="catalog" #catalog="ngModel" placeholder="Database catalog（数据库名）" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-xl-4">
+        <div class="col-12">
+          <mat-checkbox [(ngModel)]="connection.remember" name="remember" #remember="ngModel" class="col-md-8 mt-md-2">
+            记住数据库
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div class="row mt-4 col-12">
+        <div class="col-xl-8 col-lg-8 offset-lg-4 offset-xl-4 offset-sm-0">
+          <button mat-raised-button type="submit" color="accent" class="col-xl-3 col-md-2 col-sm-12 mb-2">连 接</button>
+          <button mat-raised-button type="reset" class="col-xl-3 col-md-2 col-sm-12 mb-2">取 消</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
