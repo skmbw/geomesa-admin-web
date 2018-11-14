@@ -19,7 +19,7 @@ export class DatabaseComponent implements OnInit {
 
   ngOnInit() {
     const conns: Connection[] = this.storage.getConn();
-    if (conns !== undefined && conns.length > 0) {
+    if (conns !== null && conns.length > 0) {
     }
   }
 

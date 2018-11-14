@@ -35,14 +35,17 @@ export class IndexComponent implements OnInit {
       return;
     }
 
-    if (this.connection.port === undefined) {
+    if (this.connection.port === null) {
       this.toastr.success('Zookeeper port（zk端口，默认2181）不能为空！');
       return;
     }
 
-    const remember: boolean = this.connection.remember;
+    let remember = false;
+    if (this.connection.remember === true) {
+      remember = true;
+    }
     // const conns: Connection[] = [this.connection];
-    this.storage.saveConn([this.connection], remember);
+    this.storage.saveConn(this.connection, remember);
     this.router.navigateByUrl('/database').catch();
   }
 }

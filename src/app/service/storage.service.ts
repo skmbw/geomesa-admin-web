@@ -14,8 +14,12 @@ export class StorageService {
   constructor() {
   }
 
-  saveConn(conn: Connection[], persist: boolean) {
-    const value = JSON.stringify(conn);
+  saveConn(conn: Connection, persist: boolean) {
+    let conns = this.getConn();
+    if (conns !== null) {
+      conns = conns.concat(conn);
+    }
+    const value = JSON.stringify(conns);
     if (persist) {
       window.localStorage.setItem(CONN_INFO, value);
     } else {
@@ -31,5 +35,10 @@ export class StorageService {
       value = window.sessionStorage.getItem(CONN_INFO);
     }
     return JSON.parse(value);
+  }
+
+  removeConn() {
+    window.sessionStorage.removeItem(CONN_INFO);
+    window.localStorage.removeItem(CONN_INFO);
   }
 }
