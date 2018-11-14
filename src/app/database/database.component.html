@@ -11,9 +11,9 @@
 
     <mat-list>
       <mat-divider></mat-divider>
-      <mat-list-item *ngFor="let message of messages;let i = index">
-        <h3 matLine>表：{{message.from}} </h3>
-        <mat-divider *ngIf="i !== (messages.length - 1)"></mat-divider>
+      <mat-list-item *ngFor="let table of tableList;let i = index">
+        <h3 matLine>表：{{table.from}} </h3>
+        <mat-divider *ngIf="i !== (tableList.length - 1)"></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>

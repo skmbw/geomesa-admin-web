@@ -10,8 +10,8 @@ import {DatabaseService} from '../service/database.service';
   styleUrls: ['./database.component.css']
 })
 export class DatabaseComponent implements OnInit {
-  messages = [{'from': 'newgdelt2', 'subject': '表名'}, {'from': 'newgdelt3', 'subject': '真的'}];
-  dataSourceList = [{'catalog': 'gdelt2', 'master': 'server1:60000'}, {'catalog': 'gdelt', 'master': 'server1:60000'}];
+  tableList = [{'from': 'newgdelt2', 'subject': '表名'}, {'from': 'newgdelt3', 'subject': '真的'}];
+  dataSourceList: Connection[] = [];
 
   constructor(private toastr: ToastrService, private storage: StorageService,
               private database: DatabaseService) {
@@ -20,6 +20,7 @@ export class DatabaseComponent implements OnInit {
   ngOnInit() {
     const conns: Connection[] = this.storage.getConn();
     if (conns !== null && conns.length > 0) {
+      this.dataSourceList = conns;
     }
   }
 
