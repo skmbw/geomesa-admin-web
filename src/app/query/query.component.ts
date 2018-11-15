@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ToastrService} from 'ngx-toastr';
+import {Query} from '../bean/Query';
 
 @Component({
   selector: 'app-query',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./query.component.css']
 })
 export class QueryComponent implements OnInit {
+  catalog = '22';
+  tableName = '11';
+  query: Query = new Query();
 
-  constructor() { }
+  constructor(private toastr: ToastrService) {
+  }
 
   ngOnInit() {
   }
 
+  submit() {
+    this.toastr.success(this.catalog);
+  }
 }
