@@ -24,4 +24,7 @@ export class DatabaseComponent implements OnInit {
     }
   }
 
+  open(catalog: string) {
+    this.toastr.success(catalog);
+  }
 }

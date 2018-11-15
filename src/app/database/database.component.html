@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let source of dataSourceList">
+  <mat-expansion-panel *ngFor="let source of dataSourceList" (opened)="open(source.catalog)">
     <mat-expansion-panel-header class="col-12">
       <mat-panel-title class="col-4">
         数据库名：{{source.catalog}}

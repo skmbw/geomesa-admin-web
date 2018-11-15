@@ -13,10 +13,10 @@ export class DatabaseService {
   }
 
   get(url: string): Observable<JsonBean> {
-    return this.http.get(Consts.URL + url, Consts.FORM).pipe();
+    return this.http.get<JsonBean>(Consts.URL + url, Consts.FORM).pipe();
   }
 
   post(url: string, body: any | null): Observable<JsonBean> {
-    return this.http.post(Consts.URL + url, body, Consts.JSON).pipe();
+    return this.http.post<JsonBean>(Consts.URL + url, body, Consts.JSON).pipe();
   }
 }
