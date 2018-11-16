@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Query} from '../bean/Query';
 import {DatabaseService} from '../service/database.service';
@@ -10,8 +10,8 @@ import {JsUtils} from '../bean/JsUtils';
   styleUrls: ['./query.component.css']
 })
 export class QueryComponent implements OnInit {
-  catalog = '22';
-  tableName = '11';
+  @Input() catalog = '';
+  @Input() tableName = '';
   query: Query = new Query();
   tableList = [{'name': 'newgdelt2', 'catalog': 'gdelt2'}, {'name': 'newgdelt3', 'catalog': 'gdelt2'}];
 
@@ -22,11 +22,11 @@ export class QueryComponent implements OnInit {
   }
 
   submit() {
-    if (JsUtils.isBlank(this.query.catalog)) {
+    if (JsUtils.isBlank(this.catalog)) {
       this.toastr.success('请选择数据库');
       return;
     }
-    if (JsUtils.isBlank(this.query.tableName)) {
+    if (JsUtils.isBlank(this.tableName)) {
       this.toastr.success('请选择要查询的表');
       return;
     }
@@ -37,12 +37,12 @@ export class QueryComponent implements OnInit {
     // this.database.post('table/query', this.query).subscribe(result => {});
   }
 
-  catalogChange($event) {
-    // this.toastr.success($event);
-    if ($event === 'gdelt') {
-      this.tableList.push({'catalog': 'mysql', 'name': 'user'});
-    } else {
-      this.tableList.push({'catalog': 'oracle', 'name': 'roles'});
-    }
-  }
+  // catalogChange($event) {
+  //   // this.toastr.success($event);
+  //   if ($event === 'gdelt') {
+  //     this.tableList.push({'catalog': 'mysql', 'name': 'user'});
+  //   } else {
+  //     this.tableList.push({'catalog': 'oracle', 'name': 'roles'});
+  //   }
+  // }
 }

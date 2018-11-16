@@ -12,6 +12,8 @@ import {DatabaseService} from '../service/database.service';
 export class DatabaseComponent implements OnInit {
   tableList = [{'from': 'newgdelt2', 'subject': '表名'}, {'from': 'newgdelt3', 'subject': '真的'}];
   dataSourceList: Connection[] = [];
+  catalog = '';
+  tableName = '';
 
   constructor(private toastr: ToastrService, private storage: StorageService,
               private database: DatabaseService) {
@@ -25,6 +27,12 @@ export class DatabaseComponent implements OnInit {
   }
 
   open(catalog: string) {
+    this.catalog = catalog;
     // this.toastr.success(catalog);
+  }
+
+  radio(table: string) {
+    this.tableName = table;
+    // this.toastr.success(table);
   }
 }
