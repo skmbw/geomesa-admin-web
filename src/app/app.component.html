@@ -17,14 +17,8 @@
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a class="nav-link" routerLink="database">数据库</a>
           </li>
-          <li class="nav-item" *ngIf="!userName" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" routerLink="query">查询</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" href="#">切换</a>
-          </li>
           <li class="nav-item" *ngIf="!userName">
-            <a class="nav-link" routerLink="register">退出</a>
+            <a class="nav-link" routerLink="logout">退出</a>
           </li>
         </ul>
         <!--<form class="form-inline my-2 my-lg-0">-->

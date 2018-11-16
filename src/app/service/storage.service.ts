@@ -18,6 +18,8 @@ export class StorageService {
     let conns = this.getConn();
     if (conns !== null) {
       conns = conns.concat(conn);
+    } else {
+      conns = [conn];
     }
     const value = JSON.stringify(conns);
     if (persist) {

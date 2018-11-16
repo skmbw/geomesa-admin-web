@@ -24,11 +24,14 @@ export class DatabaseComponent implements OnInit {
     const conns: Connection[] = this.storage.getConn();
     if (conns !== null && conns.length > 0) {
       this.dataSourceList = conns;
+    } else {
+      this.toastr.success('请连接数据库呀，亲！', '温馨提示');
     }
   }
 
   open(catalog: string) {
     this.catalog = catalog;
+    this.tableName = ''; // 清空当前表，防止多个库混乱
     // this.toastr.success(catalog);
   }
 

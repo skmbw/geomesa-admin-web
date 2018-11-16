@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <div class="row col-12mt-2">
+  <div class="row col-12 mt-2">
     <div class="col-3">
       <div class="col-12 mt-2">
-        <h4>数据库列表</h4>
+        <h4>数据库({{catalog}})：表({{tableName}})</h4>
       </div>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let source of dataSourceList" (opened)="open(source.catalog)">

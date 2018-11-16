@@ -27,7 +27,7 @@ export class QueryComponent implements OnInit {
       return;
     }
     if (JsUtils.isBlank(this.tableName)) {
-      this.toastr.success('请选择要查询的表');
+      this.toastr.success('请选择要操作的表');
       return;
     }
     if (JsUtils.isBlank(this.query.ecql)) {
