@@ -5,3 +5,15 @@
   background-color: #e84423;
   color: #e9e4da;
 }
+.hand {
+  cursor: pointer;
+}
+
+a {
+  color: #ec5d40;
+}
+a:hover,
+a:focus {
+  /*text-decoration: none;*/
+  color: #e84423;
+}

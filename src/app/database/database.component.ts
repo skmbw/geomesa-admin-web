@@ -14,6 +14,7 @@ export class DatabaseComponent implements OnInit {
   dataSourceList: Connection[] = [];
   catalog = '';
   tableName = '';
+  selected = 0;
 
   constructor(private toastr: ToastrService, private storage: StorageService,
               private database: DatabaseService) {

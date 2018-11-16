@@ -34,6 +34,8 @@ export class QueryComponent implements OnInit {
       this.toastr.success('ECQL语句不能为空');
       return;
     }
+    this.query.catalog = this.catalog;
+    this.query.tableName = this.tableName;
     // this.database.post('table/query', this.query).subscribe(result => {});
   }
 
