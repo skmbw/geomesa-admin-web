@@ -13,7 +13,6 @@ export class QueryComponent implements OnInit {
   @Input() catalog = '';
   @Input() tableName = '';
   query: Query = new Query();
-  tableList = [{'name': 'newgdelt2', 'catalog': 'gdelt2'}, {'name': 'newgdelt3', 'catalog': 'gdelt2'}];
 
   constructor(private toastr: ToastrService, private database: DatabaseService) {
   }
@@ -38,13 +37,4 @@ export class QueryComponent implements OnInit {
     this.query.tableName = this.tableName;
     // this.database.post('table/query', this.query).subscribe(result => {});
   }
-
-  // catalogChange($event) {
-  //   // this.toastr.success($event);
-  //   if ($event === 'gdelt') {
-  //     this.tableList.push({'catalog': 'mysql', 'name': 'user'});
-  //   } else {
-  //     this.tableList.push({'catalog': 'oracle', 'name': 'roles'});
-  //   }
-  // }
 }

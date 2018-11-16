@@ -32,11 +32,9 @@ export class DatabaseComponent implements OnInit {
   open(catalog: string) {
     this.catalog = catalog;
     this.tableName = ''; // 清空当前表，防止多个库混乱
-    // this.toastr.success(catalog);
   }
 
   radio(table: string) {
     this.tableName = table;
-    // this.toastr.success(table);
   }
 }
