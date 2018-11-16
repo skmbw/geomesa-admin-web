@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="row col-12 mt-2 ml-2">
-    <h4>数据库列表</h4>
-  </div>
   <div class="row col-12mt-2">
     <div class="col-3">
+      <div class="col-12 mt-2">
+        <h4>数据库列表</h4>
+      </div>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let source of dataSourceList" (opened)="open(source.catalog)">
           <mat-expansion-panel-header>
@@ -27,7 +27,15 @@
       </mat-accordion>
     </div>
     <div class="col-9">
-      <app-query></app-query>
+      <mat-tab-group [dynamicHeight]="true">
+        <mat-tab label="ECQL">
+          <app-query></app-query>
+        </mat-tab>
+        <mat-tab label="表定义">
+          <app-table></app-table>
+        </mat-tab>
+      </mat-tab-group>
+
     </div>
   </div>
 </div>
