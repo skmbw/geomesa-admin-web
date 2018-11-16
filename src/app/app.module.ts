@@ -31,6 +31,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {DatabaseComponent} from './database/database.component';
 import {QueryComponent} from './query/query.component';
 import {TableComponent} from './table/table.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {TableComponent} from './table/table.component';
     IndexComponent,
     DatabaseComponent,
     QueryComponent,
-    TableComponent
+    TableComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
