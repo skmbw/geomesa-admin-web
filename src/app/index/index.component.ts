@@ -3,6 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Connection} from '../bean/Connection';
 import {StorageService} from '../service/storage.service';
 import {Router} from '@angular/router';
+import {JsUtils} from '../bean/JsUtils';
 
 @Component({
   selector: 'app-index',
@@ -20,17 +21,17 @@ export class IndexComponent implements OnInit {
   }
 
   public submit() {
-    if (this.connection.master === undefined) {
+    if (JsUtils.isBlank(this.connection.master)) {
       this.toastr.success('HBase master（HBase master 地址）不能为空！');
       return;
     }
 
-    if (this.connection.quorum === undefined) {
+    if (JsUtils.isBlank(this.connection.quorum)) {
       this.toastr.success('HBase zookeeper quorum（HBase zk 集群地址）不能为空！');
       return;
     }
 
-    if (this.connection.catalog === undefined) {
+    if (JsUtils.isBlank(this.connection.catalog)) {
       this.toastr.success('Database catalog（数据库名）不能为空！');
       return;
     }

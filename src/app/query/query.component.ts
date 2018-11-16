@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Query} from '../bean/Query';
 import {DatabaseService} from '../service/database.service';
+import {JsUtils} from '../bean/JsUtils';
 
 @Component({
   selector: 'app-query',
@@ -21,15 +22,15 @@ export class QueryComponent implements OnInit {
   }
 
   submit() {
-    if (this.query.catalog === undefined) {
+    if (JsUtils.isBlank(this.query.catalog)) {
       this.toastr.success('请选择数据库');
       return;
     }
-    if (this.query.tableName === undefined) {
+    if (JsUtils.isBlank(this.query.tableName)) {
       this.toastr.success('请选择要查询的表');
       return;
     }
-    if (this.query.ecql === undefined || this.query.ecql.trim() === '') {
+    if (JsUtils.isBlank(this.query.ecql)) {
       this.toastr.success('ECQL语句不能为空');
       return;
     }

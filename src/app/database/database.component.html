@@ -1,32 +1,34 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let source of dataSourceList" (opened)="open(source.catalog)">
-    <mat-expansion-panel-header class="col-12">
-      <mat-panel-title class="col-4">
-        数据库名：{{source.catalog}}
-      </mat-panel-title>
-      <mat-panel-description class="col-8">
-        地址：{{source.master}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+<div class="container-fluid">
+  <div class="row col-12 mt-2 ml-2">
+    <h4>数据库列表</h4>
+  </div>
+  <div class="row col-12mt-2">
+    <div class="col-3">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let source of dataSourceList" (opened)="open(source.catalog)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{source.catalog}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Host：{{source.master}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
-    <mat-list>
-      <mat-divider></mat-divider>
-      <mat-list-item *ngFor="let table of tableList;let i = index">
-        <h3 matLine>表：{{table.from}} </h3> <button class="btn btn-outline-success mr-1">表定义</button> <button class="btn btn-outline-success">查询</button>
-        <mat-divider *ngIf="i !== (tableList.length - 1)"></mat-divider>
-      </mat-list-item>
-    </mat-list>
-  </mat-expansion-panel>
-  <!--<mat-expansion-panel (opened)="panelOpenState = true"-->
-                       <!--(closed)="panelOpenState = false">-->
-    <!--<mat-expansion-panel-header>-->
-      <!--<mat-panel-title>-->
-        <!--Self aware panel-->
-      <!--</mat-panel-title>-->
-      <!--<mat-panel-description>-->
-        <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
-      <!--</mat-panel-description>-->
-    <!--</mat-expansion-panel-header>-->
-    <!--<p>I'm visible because I am open</p>-->
-  <!--</mat-expansion-panel>-->
-</mat-accordion>
+          <mat-list>
+            <mat-divider></mat-divider>
+            <mat-list-item *ngFor="let table of tableList;let i = index">
+              <h3 matLine><a routerLink="table" title="表结构">{{table.from}}</a></h3>
+              <mat-radio-button title="选中表"></mat-radio-button>
+              <mat-divider *ngIf="i !== (tableList.length - 1)"></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-9">
+      <app-query></app-query>
+    </div>
+  </div>
+</div>
+
