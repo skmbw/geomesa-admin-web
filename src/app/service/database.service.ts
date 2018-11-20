@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Consts} from '../bean/consts';
+import {Consts} from '../bean/Consts';
 import {JsonBean} from '../bean/JsonBean';
 
 @Injectable({

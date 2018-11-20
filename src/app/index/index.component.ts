@@ -4,6 +4,7 @@ import {Connection} from '../bean/Connection';
 import {StorageService} from '../service/storage.service';
 import {Router} from '@angular/router';
 import {JsUtils} from '../bean/JsUtils';
+import {DatabaseService} from '../service/database.service';
 
 @Component({
   selector: 'app-index',
@@ -14,7 +15,7 @@ export class IndexComponent implements OnInit {
   connection: Connection = new Connection();
 
   constructor(private toastr: ToastrService, private storage: StorageService,
-              private router: Router) {
+              private router: Router, private database: DatabaseService) {
   }
 
   ngOnInit() {
@@ -45,8 +46,13 @@ export class IndexComponent implements OnInit {
     if (this.connection.remember === true) {
       remember = true;
     }
-    // const conns: Connection[] = [this.connection];
-    this.storage.saveConn(this.connection, remember);
-    this.router.navigateByUrl('/database').catch();
+    this.storage.saveConnect(this.connection, remember);
+    this.database.post('dataSource/init', this.connection).subscribe(result => {
+      if (result.code === 1) {
+        this.router.navigateByUrl('/database').catch();
+      } else {
+        this.toastr.success(result.message);
+      }
+    });
   }
 }

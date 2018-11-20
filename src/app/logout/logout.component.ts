@@ -12,7 +12,7 @@ export class LogoutComponent implements OnInit {
   constructor(private storage: StorageService, private router: Router) { }
 
   ngOnInit() {
-    this.storage.removeConn();
+    this.storage.removeConnect();
     this.router.navigateByUrl('/index').catch();
   }
 

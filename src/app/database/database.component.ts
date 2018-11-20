@@ -21,7 +21,7 @@ export class DatabaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    const conns: Connection[] = this.storage.getConn();
+    const conns: Connection[] = this.storage.getConnectList();
     if (conns !== null && conns.length > 0) {
       this.dataSourceList = conns;
     } else {
@@ -32,6 +32,21 @@ export class DatabaseComponent implements OnInit {
   open(catalog: string) {
     this.catalog = catalog;
     this.tableName = ''; // 清空当前表，防止多个库混乱
+    // 连接后端数据库
+    if (!this.storage.isConnect(this.catalog)) { // 是否已经连接
+      const connect = this.storage.getConnect(catalog);
+      if (connect === null || connect === undefined) {
+        this.toastr.success('本地数据库连接信息已失效，请登出，重新连接数据库。');
+        return;
+      }
+      this.database.post('dataSource/init', connect).subscribe(result => {
+        if (result.code === 1) {
+          this.storage.connect(this.catalog); // 设置标志，已经连接
+        } else {
+          this.toastr.success(result.message);
+        }
+      });
+    }
   }
 
   radio(table: string) {
