@@ -28,11 +28,14 @@
     </div>
     <div class="col-9">
       <mat-tab-group [dynamicHeight]="true" [selectedIndex]="selected" (selectedIndexChange)="selected = $event">
-        <mat-tab label="ECQL">
+        <mat-tab label="ECQL查询">
           <app-query [catalog]="catalog" [tableName]="tableName"></app-query>
         </mat-tab>
-        <mat-tab label="表定义">
+        <mat-tab label="表信息">
           <app-table [catalog]="catalog" [tableName]="tableName"></app-table>
+        </mat-tab>
+        <mat-tab label="创建表">
+          <app-table [catalog]="catalog"></app-table>
         </mat-tab>
       </mat-tab-group>
 

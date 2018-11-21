@@ -32,6 +32,7 @@ import {DatabaseComponent} from './database/database.component';
 import {QueryComponent} from './query/query.component';
 import {TableComponent} from './table/table.component';
 import { LogoutComponent } from './logout/logout.component';
+import { CreateTableComponent } from './create-table/create-table.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LogoutComponent } from './logout/logout.component';
     DatabaseComponent,
     QueryComponent,
     TableComponent,
-    LogoutComponent
+    LogoutComponent,
+    CreateTableComponent
   ],
   imports: [
     BrowserModule,
