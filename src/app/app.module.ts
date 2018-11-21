@@ -31,8 +31,10 @@ import {ToastrModule} from 'ngx-toastr';
 import {DatabaseComponent} from './database/database.component';
 import {QueryComponent} from './query/query.component';
 import {TableComponent} from './table/table.component';
-import { LogoutComponent } from './logout/logout.component';
-import { CreateTableComponent } from './create-table/create-table.component';
+import {LogoutComponent} from './logout/logout.component';
+import {CreateTableComponent} from './create-table/create-table.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ConfirmComponent} from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { CreateTableComponent } from './create-table/create-table.component';
     QueryComponent,
     TableComponent,
     LogoutComponent,
-    CreateTableComponent
+    CreateTableComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ import { CreateTableComponent } from './create-table/create-table.component';
     MatDialogModule,
     MatExpansionModule,
     ToastrModule.forRoot({timeOut: 3000, positionClass: 'toast-top-center'}),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,7 +19,8 @@
             <mat-divider></mat-divider>
             <mat-list-item *ngFor="let table of tableList;let i = index">
               <h3 matLine><a (click)="selected = 1" href="javascript:void(0)" class="hand" title="表定义">{{table}}</a></h3>
-              <mat-radio-button (click)="radio(table)" [checked]="checked" title="选中表"></mat-radio-button>
+              <span class="mr-3"><a href="javascript:void(0);" title="删除表"><fa-icon [icon]="faTrashAlt" class="fa-lg"></fa-icon></a></span>
+              <span class="mt-2"><mat-radio-button (click)="radio(table)" [checked]="checked" title="选中表"></mat-radio-button></span>
               <mat-divider *ngIf="i !== (tableList.length - 1)"></mat-divider>
             </mat-list-item>
           </mat-list>

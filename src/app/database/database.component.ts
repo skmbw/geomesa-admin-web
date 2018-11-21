@@ -5,6 +5,8 @@ import {Connection} from '../bean/Connection';
 import {DatabaseService} from '../service/database.service';
 import {Table} from '../bean/Table';
 import {MessageService} from '../service/message.service';
+import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {ConfirmService} from '../service/confirm.service';
 
 @Component({
   selector: 'app-database',
@@ -18,9 +20,11 @@ export class DatabaseComponent implements OnInit {
   tableName = '';
   selected = 0;
   checked = false;
+  faTrashAlt = faTrashAlt;
 
   constructor(private toastr: ToastrService, private storage: StorageService,
-              private database: DatabaseService, private message: MessageService) {
+              private database: DatabaseService, private message: MessageService,
+              private confirm: ConfirmService) {
   }
 
   ngOnInit() {
