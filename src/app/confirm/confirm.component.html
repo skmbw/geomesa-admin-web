@@ -1,0 +1,15 @@
+<div class="container">
+  <form #userForm="ngForm">
+    <div class="row mt-md-4">
+      <h2 class="col-md-12 text-md-center">{{config.title}}</h2>
+      <div class="col-md-12 mt-4 text-center">{{config.content}}</div>
+    </div>
+
+    <div class="row mt-md-4">
+      <div class="col-md-12">
+        <button type="button" (click)="cancel()" class="col-md-2 col-sm-12 mb-2 btn mr-2 offset-lg-4 offset-md-4">取 消</button>
+        <button type="button" (click)="confirm()" class="col-md-2 col-sm-12 mb-2 btn btn-outline-success">确 定</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -75,6 +75,9 @@ import {ConfirmComponent} from './confirm/confirm.component';
     ToastrModule.forRoot({timeOut: 3000, positionClass: 'toast-top-center'}),
     FontAwesomeModule
   ],
+  entryComponents: [
+    ConfirmComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
