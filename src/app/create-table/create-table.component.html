@@ -1,6 +1,6 @@
-<form #createForm="ngForm" (ngSubmit)="desc()">
+<form #createForm="ngForm" (ngSubmit)="create()">
   <div class="row col-12 mt-2">
-    <button mat-raised-button type="submit" color="accent">创建</button><span class="mt-1">（库 {{catalog}}）</span>
+    <button mat-raised-button type="submit" color="accent">创建</button><span class="mt-1">（数据库：{{catalog}}）</span>
   </div>
   <div class="row mt-xl-4">
     <div class="col-12">
@@ -12,7 +12,7 @@
   <div class="row mt-xl-2">
     <div class="col-12">
       <mat-form-field class="col-12">
-        <textarea matInput [(ngModel)]="table.ecql" name="ecql" placeholder="ECQL语句"></textarea>
+        <textarea matInput [(ngModel)]="table.ecql" name="ecql" #ecql="ngModel" placeholder="ECQL语句"></textarea>
       </mat-form-field>
     </div>
   </div>

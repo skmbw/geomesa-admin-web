@@ -4,6 +4,7 @@ import {StorageService} from '../service/storage.service';
 import {Connection} from '../bean/Connection';
 import {DatabaseService} from '../service/database.service';
 import {Table} from '../bean/Table';
+import {MessageService} from '../service/message.service';
 
 @Component({
   selector: 'app-database',
@@ -11,8 +12,7 @@ import {Table} from '../bean/Table';
   styleUrls: ['./database.component.css']
 })
 export class DatabaseComponent implements OnInit {
-  // [{'from': 'newgdelt2', 'subject': '表名'}, {'from': 'newgdelt3', 'subject': '真的'}]
-  tableList: Table[] = [];
+  tableList: string[] = [];
   dataSourceList: Connection[] = [];
   catalog = '';
   tableName = '';
@@ -20,7 +20,7 @@ export class DatabaseComponent implements OnInit {
   checked = false;
 
   constructor(private toastr: ToastrService, private storage: StorageService,
-              private database: DatabaseService) {
+              private database: DatabaseService, private message: MessageService) {
   }
 
   ngOnInit() {
@@ -30,6 +30,12 @@ export class DatabaseComponent implements OnInit {
     } else {
       this.toastr.success('请连接数据库呀，亲！', '温馨提示');
     }
+    // 订阅表名的变化
+    this.message.getTable().subscribe(result => {
+      // const t = new Table();
+      // t.name = result;
+      this.tableList.push(result);
+    });
   }
 
   open(catalog: string) {
