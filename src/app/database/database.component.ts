@@ -86,6 +86,19 @@ export class DatabaseComponent implements OnInit {
 
   delete(table: string) {
     this.confirm.confirm('删除操作不可恢复，您确认删除数据库[' + this.catalog + ']下的表[' + table + ']？').subscribe(result => {
+      if (result) {
+        const t = new Table();
+        t.catalog = this.catalog;
+        t.name = table;
+        this.database.post('dataSource/delete', t).subscribe(bean => {
+          if (bean.code === 1) {
+            this.tableList.splice(this.tableList.indexOf(table), 1); // 从查到的索引处删除1个
+            this.toastr.success('删除数据库[' + this.catalog + ']下的表[' + table + ']成功！');
+          } else {
+            this.toastr.success(bean.message);
+          }
+        });
+      }
     });
   }
 }
