@@ -83,4 +83,9 @@ export class DatabaseComponent implements OnInit {
     this.tableName = table;
     this.checked = true;
   }
+
+  delete(table: string) {
+    this.confirm.confirm('删除操作不可恢复，您确认删除数据库[' + this.catalog + ']下的表[' + table + ']？').subscribe(result => {
+    });
+  }
 }
