@@ -17,6 +17,7 @@ export class DatabaseComponent implements OnInit {
   catalog = '';
   tableName = '';
   selected = 0;
+  checked = false;
 
   constructor(private toastr: ToastrService, private storage: StorageService,
               private database: DatabaseService) {
@@ -34,6 +35,7 @@ export class DatabaseComponent implements OnInit {
   open(catalog: string) {
     this.catalog = catalog;
     this.tableName = ''; // 清空当前表，防止多个库混乱
+    this.checked = false;
     // 连接后端数据库
     if (!this.storage.isConnect(this.catalog)) { // 是否已经连接
       const connect = this.storage.getConnect(catalog);
@@ -69,5 +71,6 @@ export class DatabaseComponent implements OnInit {
 
   radio(table: string) {
     this.tableName = table;
+    this.checked = true;
   }
 }

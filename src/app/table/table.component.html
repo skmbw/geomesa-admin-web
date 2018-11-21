@@ -5,10 +5,16 @@
 </form>
 <div class="row mt-xl-2">
   <div class="col-12">
+    <span style="color: #e84423">表定义（ECQL）：</span>
+  </div>
+  <div class="col-12">
     {{jsonBean.message}}
   </div>
 
-  <div class="col-12 mt-2" *ngFor="let desc of descList">
+  <div class="col-12 mt-2">
+    <span style="color: #e84423">属性详情：</span>
+  </div>
+  <div class="col-12" *ngFor="let desc of descList">
     <span>{{desc}}</span>
   </div>
 </div>
