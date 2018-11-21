@@ -7,6 +7,7 @@ import {Table} from '../bean/Table';
 import {MessageService} from '../service/message.service';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {ConfirmService} from '../service/confirm.service';
+import {JsUtils} from '../bean/JsUtils';
 
 @Component({
   selector: 'app-database',
@@ -85,6 +86,10 @@ export class DatabaseComponent implements OnInit {
   }
 
   delete(table: string) {
+    if (JsUtils.isBlank(table)) {
+      this.toastr.success('待删除的数据表名不能为空。');
+      return;
+    }
     this.confirm.confirm('删除操作不可恢复，您确认删除数据库[' + this.catalog + ']下的表[' + table + ']？').subscribe(result => {
       if (result) {
         const t = new Table();
