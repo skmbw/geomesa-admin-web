@@ -18,8 +18,8 @@
           <mat-list>
             <mat-divider></mat-divider>
             <mat-list-item *ngFor="let table of tableList;let i = index">
-              <h3 matLine><a (click)="selected = 1" href="javascript:void(0)" class="hand" title="表定义">{{table.from}}</a></h3>
-              <mat-radio-button (click)="radio(table.from)" title="选中表"></mat-radio-button>
+              <h3 matLine><a (click)="selected = 1" href="javascript:void(0)" class="hand" title="表定义">{{table}}</a></h3>
+              <mat-radio-button (click)="radio(table)" title="选中表"></mat-radio-button>
               <mat-divider *ngIf="i !== (tableList.length - 1)"></mat-divider>
             </mat-list-item>
           </mat-list>
@@ -32,7 +32,7 @@
           <app-query [catalog]="catalog" [tableName]="tableName"></app-query>
         </mat-tab>
         <mat-tab label="表定义">
-          <app-table></app-table>
+          <app-table [catalog]="catalog" [tableName]="tableName"></app-table>
         </mat-tab>
       </mat-tab-group>
 

@@ -3,6 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import {StorageService} from '../service/storage.service';
 import {Connection} from '../bean/Connection';
 import {DatabaseService} from '../service/database.service';
+import {Table} from '../bean/Table';
 
 @Component({
   selector: 'app-database',
@@ -10,7 +11,8 @@ import {DatabaseService} from '../service/database.service';
   styleUrls: ['./database.component.css']
 })
 export class DatabaseComponent implements OnInit {
-  tableList = [{'from': 'newgdelt2', 'subject': '表名'}, {'from': 'newgdelt3', 'subject': '真的'}];
+  // [{'from': 'newgdelt2', 'subject': '表名'}, {'from': 'newgdelt3', 'subject': '真的'}]
+  tableList: Table[] = [];
   dataSourceList: Connection[] = [];
   catalog = '';
   tableName = '';
@@ -47,6 +49,22 @@ export class DatabaseComponent implements OnInit {
         }
       });
     }
+    // 表的数据可能会很多，如果保存在本地的话，可能会超过5M的限制，后端也是缓存查询一次也没有大的影响
+    const table = new Table();
+    table.catalog = catalog;
+    this.database.post('table/list', table).subscribe(result => {
+      if (result.code === 1) {
+        this.tableList = result.data;
+      } else if (result.code === 3) {
+        if (this.storage.isConnect(this.catalog)) {
+          this.toastr.success('Session已经失效，请关闭浏览器，重新打开。');
+        } else {
+          this.toastr.success(result.message);
+        }
+      } else {
+        this.toastr.success(result.message);
+      }
+    });
   }
 
   radio(table: string) {
