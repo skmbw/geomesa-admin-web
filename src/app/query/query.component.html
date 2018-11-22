@@ -12,3 +12,50 @@
     </div>
   </div>
 </form>
+<div class="row">
+  <div class="example-container mat-elevation-z8 col-xl-12">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+        GitHub's API rate limit has been reached. It will be reset in one minute.
+      </div>
+    </div>
+
+    <div class="example-table-container">
+
+      <mat-table  [dataSource]="data" class="example-table">
+        <!-- Number Column -->
+        <ng-container matColumnDef="number">
+          <mat-header-cell  *matHeaderCellDef>#</mat-header-cell>
+          <mat-cell  *matCellDef="let row">{{ row.number }}</mat-cell>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <mat-header-cell  *matHeaderCellDef>Title</mat-header-cell>
+          <mat-cell  *matCellDef="let row">{{ row.title }}</mat-cell>
+        </ng-container>
+
+        <!-- State Column -->
+        <ng-container matColumnDef="state">
+          <mat-header-cell  *matHeaderCellDef>State</mat-header-cell>
+          <mat-cell  *matCellDef="let row">{{ row.state }}</mat-cell>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="created">
+          <mat-header-cell  *matHeaderCellDef mat-sort-header disableClear="true">
+            Created
+          </mat-header-cell>
+          <mat-cell  *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+
+    <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+  </div>
+</div>

@@ -21,6 +21,7 @@ import {
   MatListModule,
   MatOptionModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatRadioModule,
   MatSelectModule,
   MatTableModule,
@@ -72,6 +73,7 @@ import {ConfirmComponent} from './confirm/confirm.component';
     MatTableModule,
     MatDialogModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({timeOut: 3000, positionClass: 'toast-top-center'}),
     FontAwesomeModule
   ],
