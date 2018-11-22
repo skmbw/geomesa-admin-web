@@ -23,10 +23,10 @@
 
     <div class="example-table-container">
       <mat-table [dataSource]="data" class="example-table">
-        <ng-container *ngFor="let col of displayedColumns" matColumnDef="{{col}}">
-          <mat-header-cell *matHeaderCellDef>{{col.toUpperCase()}}</mat-header-cell>
-          <mat-cell *matCellDef="let row" [ngSwitch]="col">
-            <span *ngSwitchCase="'number'">{{row.number}}</span>
+        <ng-container *ngFor="let column of displayedColumns;let i = index" matColumnDef="{{column}}">
+          <mat-header-cell *matHeaderCellDef>{{column.toUpperCase()}}</mat-header-cell>
+          <mat-cell *matCellDef="let row" [ngSwitch]="column">
+            <span *ngSwitchCase="'number'">{{row[column]}}</span>
             <span *ngSwitchCase="'title'">{{row.title}}</span>
             <span *ngSwitchCase="'state'">{{row.state}}</span>
             <span *ngSwitchCase="'created'">{{row.created_at | date}}</span>
