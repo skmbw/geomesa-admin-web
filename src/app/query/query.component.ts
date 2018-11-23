@@ -112,29 +112,3 @@ export class QueryComponent implements OnInit {
     });
   }
 }
-
-//
-// export interface GithubApi {
-//   items: GithubIssue[];
-//   total_count: number;
-// }
-//
-// export interface GithubIssue {
-//   created_at: string;
-//   number: string;
-//   state: string;
-//   title: string;
-// }
-//
-// /** An example database that the data source uses to retrieve data for the table. */
-// export class ExampleHttpDao {
-//   constructor(private http: HttpClient) {}
-//
-//   getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
-//     const href = 'https://api.github.com/search/issues';
-//     const requestUrl =
-//       `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
-//
-//     return this.http.get<GithubApi>(requestUrl);
-//   }
-// }

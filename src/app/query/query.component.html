@@ -22,10 +22,10 @@
     </div>
 
     <div class="example-table-container">
-      <mat-table [dataSource]="data" class="table table-striped table-hover">
+      <table mat-table [dataSource]="data" class="table-hover">
         <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
-          <mat-header-cell *matHeaderCellDef>{{column.toUpperCase()}}</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
+          <th mat-header-cell *matHeaderCellDef>{{column.toUpperCase()}}</th>
+          <td mat-cell *matCellDef="let row">{{row[column]}}</td>
         </ng-container>
 
         <!--<ng-container matColumnDef="number">-->
@@ -48,9 +48,9 @@
           <!--<mat-cell  *matCellDef="let row">{{ row.created_at | date }}</mat-cell>-->
         <!--</ng-container>-->
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </div>
 
     <mat-paginator [length]="resultsLength" [pageSize]="20" showFirstLastButtons></mat-paginator>
