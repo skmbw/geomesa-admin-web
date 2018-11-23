@@ -14,23 +14,18 @@
 </form>
 <div class="row">
   <div class="example-container mat-elevation-z8 col-xl-12">
-    <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-        GitHub's API rate limit has been reached. It will be reset in one minute.
-      </div>
+      <!--<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
+        <!--GitHub's API rate limit has been reached. It will be reset in one minute.-->
+      <!--</div>-->
     </div>
 
     <div class="example-table-container">
-      <mat-table [dataSource]="data" class="example-table">
-        <ng-container *ngFor="let column of displayedColumns;let i = index" matColumnDef="{{column}}">
+      <mat-table [dataSource]="data" class="table table-striped table-hover">
+        <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
           <mat-header-cell *matHeaderCellDef>{{column.toUpperCase()}}</mat-header-cell>
-          <mat-cell *matCellDef="let row" [ngSwitch]="column">
-            <span *ngSwitchCase="'number'">{{row[column]}}</span>
-            <span *ngSwitchCase="'title'">{{row.title}}</span>
-            <span *ngSwitchCase="'state'">{{row.state}}</span>
-            <span *ngSwitchCase="'created'">{{row.created_at | date}}</span>
-          </mat-cell>
+          <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
         </ng-container>
 
         <!--<ng-container matColumnDef="number">-->
@@ -58,6 +53,6 @@
       </mat-table>
     </div>
 
-    <mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="20" showFirstLastButtons></mat-paginator>
   </div>
 </div>
