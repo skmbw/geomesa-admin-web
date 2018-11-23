@@ -106,6 +106,7 @@ export class QueryComponent implements OnInit {
       if (resultArray.length > 0) {
         const column = resultArray[0];
         this.displayedColumns = JsUtils.getColumn(column);
+        this.resultsLength = resultArray.length;
       }
       this.data = new MatTableDataSource<any>(resultArray);
     });
