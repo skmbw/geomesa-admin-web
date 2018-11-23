@@ -57,27 +57,41 @@ export class DatabaseComponent implements OnInit {
       this.database.post('dataSource/init', connect).subscribe(result => {
         if (result.code === 1) {
           this.storage.connect(this.catalog); // 设置标志，已经连接
+          this.toastr.success(result.message);
+          const table = new Table();
+          table.catalog = catalog;
+          this.database.post('table/list', table).subscribe(js => {
+            if (js.code === 1) {
+              this.tableList = js.data;
+            } else if (js.code === 3) {
+              // this.toastr.success('Session失效，请关闭浏览器，重新打开。');
+              this.toastr.success(js.message);
+            } else {
+              this.toastr.success(js.message);
+            }
+          });
         } else {
           this.toastr.success(result.message);
         }
       });
-    }
-    // 表的数据可能会很多，如果保存在本地的话，可能会超过5M的限制，后端也是缓存查询一次也没有大的影响
-    const table = new Table();
-    table.catalog = catalog;
-    this.database.post('table/list', table).subscribe(result => {
-      if (result.code === 1) {
-        this.tableList = result.data;
-      } else if (result.code === 3) {
-        if (this.storage.isConnect(this.catalog)) {
-          this.toastr.success('Session已经失效，请关闭浏览器，重新打开。');
-        } else {
-          this.toastr.success(result.message);
-        }
+    } else {
+      // 表的数据可能会很多，如果保存在本地的话，可能会超过5M的限制，后端也是缓存查询一次也没有大的影响
+      const table = new Table();
+      table.catalog = catalog;
+      if (this.storage.isConnect(this.catalog)) {
+        this.database.post('table/list', table).subscribe(result => {
+          if (result.code === 1) {
+            this.tableList = result.data;
+          } else if (result.code === 3) {
+            this.toastr.success('Session失效，请关闭浏览器，重新打开。');
+          } else {
+            this.toastr.success(result.message);
+          }
+        });
       } else {
-        this.toastr.success(result.message);
+        this.toastr.success('数据库正在连接中，请稍后....');
       }
-    });
+    }
   }
 
   radio(table: string) {
