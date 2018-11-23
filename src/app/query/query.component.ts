@@ -3,7 +3,6 @@ import {ToastrService} from 'ngx-toastr';
 import {Query} from '../bean/Query';
 import {DatabaseService} from '../service/database.service';
 import {JsUtils} from '../bean/JsUtils';
-import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
@@ -28,8 +27,7 @@ export class QueryComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private toastr: ToastrService, private database: DatabaseService,
-              private http: HttpClient) {
+  constructor(private toastr: ToastrService, private database: DatabaseService) {
   }
 
   ngOnInit() {
