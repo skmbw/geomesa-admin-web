@@ -11,48 +11,36 @@
       </mat-form-field>
     </div>
   </div>
-</form>
-<div class="row">
-  <div class="example-container mat-elevation-z8 col-xl-12">
-    <div class="example-loading-shade" *ngIf="isLoadingResults">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <!--<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
-        <!--GitHub's API rate limit has been reached. It will be reset in one minute.-->
-      <!--</div>-->
-    </div>
+  <div class="row">
+    <mat-tab-group class="col-12" [dynamicHeight]="true" [selectedIndex]="selected" (selectedIndexChange)="selected = $event">
+      <mat-tab label="Result Table">
+        <div class="example-container mat-elevation-z8 col-xl-12 col-12">
+          <div class="example-loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+            <!--<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">-->
+            <!--GitHub's API rate limit has been reached. It will be reset in one minute.-->
+            <!--</div>-->
+          </div>
 
-    <div class="example-table-container">
-      <table mat-table [dataSource]="data" class="table-hover">
-        <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
-          <th mat-header-cell *matHeaderCellDef>{{column.toUpperCase()}}</th>
-          <td mat-cell *matCellDef="let row">{{row[column]}}</td>
-        </ng-container>
+          <div class="example-table-container">
+            <table mat-table [dataSource]="data" class="table-hover">
+              <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
+                <th mat-header-cell *matHeaderCellDef>{{column.toUpperCase()}}</th>
+                <td mat-cell *matCellDef="let row">{{row[column]}}</td>
+              </ng-container>
 
-        <!--<ng-container matColumnDef="number">-->
-          <!--<mat-header-cell *matHeaderCellDef>Number</mat-header-cell>-->
-          <!--<mat-cell *matCellDef="let row">{{row.number}}</mat-cell>-->
-        <!--</ng-container>-->
-
-        <!--<ng-container matColumnDef="title">-->
-          <!--<mat-header-cell  *matHeaderCellDef>Title</mat-header-cell>-->
-          <!--<mat-cell  *matCellDef="let row">{{ row.title }}</mat-cell>-->
-        <!--</ng-container>-->
-
-        <!--<ng-container matColumnDef="state">-->
-          <!--<mat-header-cell  *matHeaderCellDef>State</mat-header-cell>-->
-          <!--<mat-cell  *matCellDef="let row">{{ row.state }}</mat-cell>-->
-        <!--</ng-container>-->
-
-        <!--<ng-container matColumnDef="created">-->
-          <!--<mat-header-cell  *matHeaderCellDef>Created</mat-header-cell>-->
-          <!--<mat-cell  *matCellDef="let row">{{ row.created_at | date }}</mat-cell>-->
-        <!--</ng-container>-->
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-
-    <mat-paginator [length]="resultsLength" [pageSize]="20" showFirstLastButtons></mat-paginator>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+          <mat-paginator [length]="resultsLength" [pageSize]="20" showFirstLastButtons></mat-paginator>
+        </div>
+      </mat-tab>
+      <mat-tab label="GEO JSON">
+        <div class="row col-12">
+          <div class="ml-4">{{geoJson}}</div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-</div>
+</form>

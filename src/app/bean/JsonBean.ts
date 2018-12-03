@@ -5,4 +5,6 @@ export class JsonBean {
   code: number;
   message: string;
   data: any;
+  geoJson: string;
+  columnList: string[];
 }

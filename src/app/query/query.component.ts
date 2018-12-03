@@ -24,6 +24,7 @@ export class QueryComponent implements OnInit {
   resultsLength = 0;
   isLoadingResults = false;
   // isRateLimitReached = false;
+  geoJson = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -97,13 +98,15 @@ export class QueryComponent implements OnInit {
       // this.data = new MatTableDataSource<any>(result.data);
       this.isLoadingResults = false;
       const resultArray: any[] = [];
-      const jsonArray = JSON.parse(result.data);
+      this.geoJson = result.data;
+      const jsonArray = JSON.parse(this.geoJson);
       for (const bean of jsonArray) {
         resultArray.push(bean.properties);
       }
+      this.displayedColumns = result.columnList;
       if (resultArray.length > 0) {
-        const column = resultArray[0];
-        this.displayedColumns = JsUtils.getColumn(column);
+        // const column = resultArray[0];
+        // this.displayedColumns = JsUtils.getColumn(column);
         this.resultsLength = resultArray.length;
       }
       this.data = new MatTableDataSource<any>(resultArray);
