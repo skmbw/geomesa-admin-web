@@ -25,6 +25,7 @@ export class QueryComponent implements OnInit {
   isLoadingResults = false;
   // isRateLimitReached = false;
   geoJson = '';
+  geoJsonObject = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -100,6 +101,7 @@ export class QueryComponent implements OnInit {
       const resultArray: any[] = [];
       this.geoJson = result.data;
       const jsonArray = JSON.parse(this.geoJson);
+      this.geoJsonObject = jsonArray;
       for (const bean of jsonArray) {
         resultArray.push(bean.properties);
       }

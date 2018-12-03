@@ -36,6 +36,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {CreateTableComponent} from './create-table/create-table.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ConfirmComponent} from './confirm/confirm.component';
+import {NgxJsonViewerModule} from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {ConfirmComponent} from './confirm/confirm.component';
     MatExpansionModule,
     MatProgressSpinnerModule,
     ToastrModule.forRoot({timeOut: 3000, positionClass: 'toast-top-center'}),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxJsonViewerModule
   ],
   entryComponents: [
     ConfirmComponent

@@ -38,7 +38,7 @@
       </mat-tab>
       <mat-tab label="GEO JSON">
         <div class="row col-12">
-          <div class="ml-4">{{geoJson}}</div>
+          <ngx-json-viewer [json]="geoJsonObject" [expanded]="false"></ngx-json-viewer>
         </div>
       </mat-tab>
     </mat-tab-group>
