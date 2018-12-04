@@ -5,4 +5,5 @@ export class Table {
   catalog: string;
   name: string;
   ecql: string;
+  master: string;
 }

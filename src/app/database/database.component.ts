@@ -19,6 +19,7 @@ export class DatabaseComponent implements OnInit {
   dataSourceList: Connection[] = [];
   catalog = '';
   tableName = '';
+  master = '';
   selected = 0;
   checked = false;
   faTrashAlt = faTrashAlt;
@@ -43,8 +44,9 @@ export class DatabaseComponent implements OnInit {
     });
   }
 
-  open(catalog: string) {
+  open(master: string, catalog: string) {
     this.catalog = catalog;
+    this.master = master;
     this.tableName = ''; // 清空当前表，防止多个库混乱
     this.checked = false;
     // 连接后端数据库
@@ -108,6 +110,7 @@ export class DatabaseComponent implements OnInit {
       if (result) {
         const t = new Table();
         t.catalog = this.catalog;
+        t.master = this.master;
         t.name = table;
         this.database.post('dataSource/delete', t).subscribe(bean => {
           if (bean.code === 1) {

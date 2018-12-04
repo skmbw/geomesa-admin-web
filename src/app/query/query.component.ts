@@ -13,6 +13,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 export class QueryComponent implements OnInit {
   @Input() catalog = '';
   @Input() tableName = '';
+  @Input() master = '';
   query: Query = new Query();
   // displayedColumns = ['created', 'state', 'number', 'title'];
   displayedColumns = [];
@@ -95,6 +96,7 @@ export class QueryComponent implements OnInit {
     this.isLoadingResults = true;
     this.query.catalog = this.catalog;
     this.query.tableName = this.tableName;
+    this.query.master = this.master;
     this.database.post('table/query', this.query).subscribe(result => {
       // this.data = new MatTableDataSource<any>(result.data);
       this.isLoadingResults = false;

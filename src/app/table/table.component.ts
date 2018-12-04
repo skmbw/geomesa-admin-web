@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
   descList: string[] = [];
   @Input() catalog = '';
   @Input() tableName = '';
+  @Input() master = '';
 
   constructor(private toastr: ToastrService, private database: DatabaseService) {
   }
@@ -34,6 +35,7 @@ export class TableComponent implements OnInit {
     const table = new Table();
     table.catalog = this.catalog;
     table.name = this.tableName;
+    table.master = this.master;
     this.database.post('dataSource/desc', table).subscribe(result => {
       if (result.code === 1) {
         this.jsonBean = result;

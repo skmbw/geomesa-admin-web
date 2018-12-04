@@ -12,6 +12,7 @@ import {MessageService} from '../service/message.service';
 })
 export class CreateTableComponent implements OnInit {
   @Input() catalog = '';
+  @Input() master = '';
   table: Table = new Table();
 
   constructor(private toastr: ToastrService, private database: DatabaseService,
@@ -36,7 +37,7 @@ export class CreateTableComponent implements OnInit {
     }
     // this.message.sendTable(this.table.name);
     this.table.catalog = this.catalog;
-    // this.table = new Table(); // reset
+    this.table.master = this.master;
     this.database.post('dataSource/create', this.table).subscribe(result => {
       if (result.code === 1) {
         this.toastr.success('新建表[' + this.table.name + ']成功。');
