@@ -80,6 +80,7 @@ export class DatabaseComponent implements OnInit {
       // 表的数据可能会很多，如果保存在本地的话，可能会超过5M的限制，后端也是缓存查询一次也没有大的影响
       const table = new Table();
       table.catalog = catalog;
+      table.master = this.master;
       if (this.storage.isConnect(this.catalog)) {
         this.database.post('table/list', table).subscribe(result => {
           if (result.code === 1) {
