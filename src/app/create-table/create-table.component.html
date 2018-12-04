@@ -1,6 +1,6 @@
 <form #createForm="ngForm" (ngSubmit)="create()">
   <div class="row col-12 mt-2">
-    <button mat-raised-button type="submit" color="accent">创建</button><span class="mt-1">（数据库：{{catalog}}）</span>
+    <button mat-raised-button type="submit" [disabled]="disabled" color="accent">创建</button><span class="mt-1">（数据库：{{catalog}}）</span>
   </div>
   <div class="row mt-xl-4">
     <div class="col-12">

@@ -4,6 +4,9 @@ import {JsUtils} from '../bean/JsUtils';
 import {ToastrService} from 'ngx-toastr';
 import {DatabaseService} from '../service/database.service';
 import {MessageService} from '../service/message.service';
+import {catchError, startWith} from 'rxjs/internal/operators';
+import {of} from 'rxjs';
+import {JsonBean} from '../bean/JsonBean';
 
 @Component({
   selector: 'app-create-table',
@@ -13,6 +16,7 @@ import {MessageService} from '../service/message.service';
 export class CreateTableComponent implements OnInit {
   @Input() catalog = '';
   @Input() master = '';
+  disabled = false;
   table: Table = new Table();
 
   constructor(private toastr: ToastrService, private database: DatabaseService,
@@ -38,7 +42,18 @@ export class CreateTableComponent implements OnInit {
     // this.message.sendTable(this.table.name);
     this.table.catalog = this.catalog;
     this.table.master = this.master;
-    this.database.post('dataSource/create', this.table).subscribe(result => {
+    this.database.post('dataSource/create', this.table).pipe(
+      startWith(() => {
+        this.disabled = true;
+      }),
+      catchError(() => {
+        this.disabled = false;
+        const bean = new JsonBean();
+        bean.code = -2;
+        bean.message = 'Http请求异常。';
+        return of(bean);
+      })
+    ).subscribe(result => {
       if (result.code === 1) {
         this.toastr.success('新建表[' + this.table.name + ']成功。');
         const tableName = this.table.name; // 引用传递
@@ -47,6 +62,7 @@ export class CreateTableComponent implements OnInit {
       } else {
         this.toastr.success(result.message);
       }
+      this.disabled = false;
     });
   }
 }
