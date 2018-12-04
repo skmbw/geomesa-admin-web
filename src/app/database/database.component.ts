@@ -109,6 +109,8 @@ export class DatabaseComponent implements OnInit {
     }
     this.confirm.confirm('删除操作不可恢复，您确认删除数据库[' + this.catalog + ']下的表[' + table + ']？').subscribe(result => {
       if (result) {
+        this.toastr.success('删除数据表非常耗时，可能需要几分钟的时间，正在玩命执行中，请耐心等待......',
+          '温馨提示', {timeOut: 8000, positionClass: 'toast-top-center', closeButton: true});
         const t = new Table();
         t.catalog = this.catalog;
         t.master = this.master;
